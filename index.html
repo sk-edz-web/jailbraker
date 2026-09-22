@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Security & Jailbreak Research Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            dark: '#030712',
+                            card: '#0b1329',
+                            cyan: '#06b6d4',
+                            green: '#10b981',
+                            purple: '#8b5cf6',
+                            pink: '#ec4899'
+                        }
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 25px rgba(6, 182, 212, 0.35)',
+                        'neon-purple': '0 0 25px rgba(139, 92, 246, 0.35)',
+                        'neon-pink': '0 0 25px rgba(236, 72, 153, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+            border-radius: 4px;
+        }
+        .glass-panel {
+            background: rgba(11, 19, 41, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        .glass-panel:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+        }
+        .pink-glow {
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-cyber-dark text-slate-200 font-sans min-h-screen selection:bg-cyan-500 selection:text-black flex flex-col justify-between">
+
+    <div class="fixed inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0"></div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 w-full border-b border-cyan-500/20 glass-panel px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
+            <span class="font-orbitron font-extrabold text-lg md:text-xl text-cyan-400 tracking-wider text-glow">
+                AI_SEC//HUB
+            </span>
+        </div>
+        <div class="flex items-center space-x-3">
+            <span id="status-badge" class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-semibold tracking-wide">
+                SYSTEM: SECURE
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 max-w-6xl mx-auto px-6 py-12 flex flex-col gap-16 w-full my-auto">
+
+        <!-- TOP SECTION: AI Security & Jailbreak Concepts -->
+        <section class="text-center">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold uppercase tracking-widest mb-4">
+                <span>Adversarial Safety Research</span>
+            </div>
+            <h1 class="font-orbitron text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
+                AI Safety & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-pink-500 pink-glow">Jailbreak Analysis</span>
+            </h1>
+            <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mb-8 font-light">
+                Exploring how adversarial linguistic framing tests artificial intelligence alignment guardrails, and how security researchers harden neural architectures.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="text-cyan-400 font-orbitron text-xl font-bold mb-2">01. Alignment</div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Training foundational LLMs using RLHF to ensure responses are safe, helpful, and aligned with human ethical standards.
+                    </p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="text-pink-400 font-orbitron text-xl font-bold mb-2">02. Vulnerabilities</div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Hypothetical roleplay scenarios and token obfuscation techniques that attempt to circumvent safety filters.
+                    </p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="text-emerald-400 font-orbitron text-xl font-bold mb-2">03. Guardrails</div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Real-time input classifiers and output verification layers designed to intercept policy-violating requests.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CENTER SECTION: Get Prompt Button & Audio Player -->
+        <section class="glass-panel p-8 md:p-12 rounded-3xl text-center max-w-xl mx-auto border-pink-500/30 shadow-neon-purple w-full">
+            <h2 class="font-orbitron text-xl md:text-2xl font-bold text-white mb-3">Interactive Terminal</h2>
+            <p class="text-slate-300 text-xs md:text-sm mb-8">
+                Click the button below to retrieve the security prompt sequence and engage continuous audio feedback.
+            </p>
+
+            <div class="flex flex-col items-center justify-center gap-4">
+                <button id="getPromptBtn" class="px-10 py-5 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 text-white font-orbitron font-extrabold text-base md:text-lg tracking-wider hover:opacity-90 transition duration-300 shadow-neon-pink transform active:scale-95 cursor-pointer w-full sm:w-auto">
+                    GET PROMPT
+                </button>
+                <span id="audioStatus" class="text-xs font-mono text-slate-400">AUDIO STATUS: READY (LOOPING OFF)</span>
+            </div>
+        </section>
+
+        <!-- BOTTOM SECTION: Defense Mechanisms & Ethics -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-panel p-8 rounded-2xl">
+                <h3 class="font-orbitron text-lg font-bold text-white mb-3 flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                    <span>Proactive Red Teaming</span>
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Security engineers systematically simulate adversarial attacks against frontier models to discover latent flaws before public deployment, ensuring robust cyber resilience.
+                </p>
+            </div>
+            <div class="glass-panel p-8 rounded-2xl">
+                <h3 class="font-orbitron text-lg font-bold text-white mb-3 flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span>Responsible AI Frameworks</span>
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Maintaining a balance between open exploration and strict security guarantees is vital for fostering trustworthy artificial intelligence ecosystems worldwide.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full border-t border-slate-800 bg-cyber-dark py-6 text-center text-xs text-slate-500 mt-12">
+        <p>AI SECURITY RESEARCH HUB &copy; 2026 // ALL RIGHTS RESERVED</p>
+    </footer>
+
+    <!-- Audio Element -->
+    <audio id="cyberAudio" src="sound.mp3" preload="auto" loop></audio>
+
+    <script>
+        const btn = document.getElementById('getPromptBtn');
+        const audio = document.getElementById('cyberAudio');
+        const statusSpan = document.getElementById('audioStatus');
+        const statusBadge = document.getElementById('status-badge');
+
+        let isPlaying = false;
+
+        btn.addEventListener('click', async () => {
+            try {
+                if (!isPlaying) {
+                    audio.currentTime = 0;
+                    await audio.play();
+                    isPlaying = true;
+                    btn.textContent = "STOP PROMPT LOOP";
+                    btn.classList.remove('from-pink-500', 'to-cyan-500');
+                    btn.classList.add('from-emerald-500', 'to-cyan-600');
+                    statusSpan.textContent = "AUDIO STATUS: PLAYING (LOOP ACTIVE)";
+                    statusSpan.classList.add('text-pink-400');
+                    statusBadge.textContent = "SYSTEM: STREAMING AUDIO";
+                    statusBadge.className = "px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/30 text-xs font-semibold tracking-wide animate-pulse";
+                } else {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    isPlaying = false;
+                    btn.textContent = "GET PROMPT";
+                    btn.classList.remove('from-emerald-500', 'to-cyan-600');
+                    btn.classList.add('from-pink-500', 'to-cyan-500');
+                    statusSpan.textContent = "AUDIO STATUS: STOPPED";
+                    statusSpan.classList.remove('text-pink-400');
+                    statusBadge.textContent = "SYSTEM: SECURE";
+                    statusBadge.className = "px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-semibold tracking-wide";
+                }
+            } catch (err) {
+                console.error("Audio playback error:", err);
+                statusSpan.textContent = "AUDIO STATUS: ERROR (CHECK FILE)";
+            }
+        });
+    </script>
+
+</body>
+</html>
