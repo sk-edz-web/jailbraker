@@ -122,14 +122,14 @@
         <section class="glass-panel p-8 md:p-12 rounded-3xl text-center max-w-xl mx-auto border-pink-500/30 shadow-neon-purple w-full">
             <h2 class="font-orbitron text-xl md:text-2xl font-bold text-white mb-3">Interactive Terminal</h2>
             <p class="text-slate-300 text-xs md:text-sm mb-8">
-                Click the button below to retrieve the security prompt sequence and engage continuous audio feedback.
+                Click the button below to retrieve the security prompt sequence and engage continuous background audio.
             </p>
 
             <div class="flex flex-col items-center justify-center gap-4">
                 <button id="getPromptBtn" class="px-10 py-5 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 text-white font-orbitron font-extrabold text-base md:text-lg tracking-wider hover:opacity-90 transition duration-300 shadow-neon-pink transform active:scale-95 cursor-pointer w-full sm:w-auto">
                     GET PROMPT
                 </button>
-                <span id="audioStatus" class="text-xs font-mono text-slate-400">AUDIO STATUS: READY (LOOPING OFF)</span>
+                <span id="audioStatus" class="text-xs font-mono text-slate-400">AUDIO STATUS: READY (BACKGROUND LOOP)</span>
             </div>
         </section>
 
@@ -171,33 +171,38 @@
         const statusSpan = document.getElementById('audioStatus');
         const statusBadge = document.getElementById('status-badge');
 
-        let isPlaying = false;
+        let audioCtx, gainNode, sourceNode;
 
         btn.addEventListener('click', async () => {
             try {
-                if (!isPlaying) {
-                    audio.currentTime = 0;
-                    await audio.play();
-                    isPlaying = true;
-                    btn.textContent = "STOP PROMPT LOOP";
-                    btn.classList.remove('from-pink-500', 'to-cyan-500');
-                    btn.classList.add('from-emerald-500', 'to-cyan-600');
-                    statusSpan.textContent = "AUDIO STATUS: PLAYING (LOOP ACTIVE)";
-                    statusSpan.classList.add('text-pink-400');
-                    statusBadge.textContent = "SYSTEM: STREAMING AUDIO";
-                    statusBadge.className = "px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/30 text-xs font-semibold tracking-wide animate-pulse";
-                } else {
-                    audio.pause();
-                    audio.currentTime = 0;
-                    isPlaying = false;
-                    btn.textContent = "GET PROMPT";
-                    btn.classList.remove('from-emerald-500', 'to-cyan-600');
-                    btn.classList.add('from-pink-500', 'to-cyan-500');
-                    statusSpan.textContent = "AUDIO STATUS: STOPPED";
-                    statusSpan.classList.remove('text-pink-400');
-                    statusBadge.textContent = "SYSTEM: SECURE";
-                    statusBadge.className = "px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-semibold tracking-wide";
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    sourceNode = audioCtx.createMediaElementSource(audio);
+                    gainNode = audioCtx.createGain();
+                    gainNode.gain.value = 2.0; // Volume boost[cite: 1]
+                    sourceNode.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
                 }
+
+                if (audioCtx.state === 'suspended') {
+                    await audioCtx.resume();
+                }
+
+                await audio.play();
+
+                // Enable Media Session so mobile OS treats it as a background media player
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: 'AI Security Prompt Stream',
+                        artist: 'AI Security Hub',
+                        album: 'Cyberpunk Research Audio'
+                    });
+                }
+                
+                statusSpan.textContent = "AUDIO STATUS: BACKGROUND PLAYING (LOOP)";
+                statusSpan.classList.add('text-pink-400');
+                statusBadge.textContent = "SYSTEM: BACKGROUND ACTIVE";
+                statusBadge.className = "px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/30 text-xs font-semibold tracking-wide animate-pulse";
             } catch (err) {
                 console.error("Audio playback error:", err);
                 statusSpan.textContent = "AUDIO STATUS: ERROR (CHECK FILE)";
